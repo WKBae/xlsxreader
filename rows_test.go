@@ -75,6 +75,11 @@ var cellValueTests = []struct {
 		Error: "attempted to index value 32 in shared strings of length 4",
 	},
 	{
+		Name:     "String Formula",
+		Cell:     rawCell{Type: "str", Value: &inlineStr},
+		Expected: inlineStr,
+	},
+	{
 		Name:     "Unknown type",
 		Cell:     rawCell{Type: "potato", Value: &inlineStr},
 		Expected: inlineStr,
@@ -135,6 +140,11 @@ var cellTypeTests = []struct {
 	{
 		Name:     "Valid Shared String",
 		Cell:     rawCell{Type: "s", Value: &sharedString},
+		Expected: TypeString,
+	},
+	{
+		Name:     "Valid String Formula",
+		Cell:     rawCell{Type: "str", Value: &inlineStr},
 		Expected: TypeString,
 	},
 	{
