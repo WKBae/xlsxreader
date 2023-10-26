@@ -245,7 +245,7 @@ func (x *XlsxFile) getCellType(r rawCell) CellType {
 			return TypeDateTime
 		}
 		return TypeNumerical
-	case "s", "inlineStr":
+	case "s", "inlineStr", "str":
 		return TypeString
 	default:
 		return TypeString
