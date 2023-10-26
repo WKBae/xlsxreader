@@ -223,7 +223,7 @@ func (x *XlsxFile) getCellValue(r rawCell) (string, error) {
 		return x.sharedStrings[index], nil
 	}
 
-	if x.dateStyles[r.Style] && r.Type != "d" {
+	if x.dateStyles[r.Style] && (r.Type == "" || r.Type == "n") {
 		formattedDate, err := convertExcelDateToDateString(*r.Value)
 		if err != nil {
 			return "", err
@@ -235,16 +235,15 @@ func (x *XlsxFile) getCellValue(r rawCell) (string, error) {
 }
 
 func (x *XlsxFile) getCellType(r rawCell) CellType {
-	if x.dateStyles[r.Style] {
-		return TypeDateTime
-	}
-
 	switch r.Type {
 	case "b":
 		return TypeBoolean
 	case "d":
 		return TypeDateTime
 	case "n", "":
+		if x.dateStyles[r.Style] {
+			return TypeDateTime
+		}
 		return TypeNumerical
 	case "s", "inlineStr":
 		return TypeString

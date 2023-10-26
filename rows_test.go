@@ -80,6 +80,11 @@ var cellValueTests = []struct {
 		Expected: inlineStr,
 	},
 	{
+		Name:     "Unknown type with style",
+		Cell:     rawCell{Type: "potato", Value: &inlineStr, Style: 1},
+		Expected: inlineStr,
+	},
+	{
 		Name:     "Date type",
 		Cell:     rawCell{Type: "d", Style: 1, Value: &dateString},
 		Expected: dateString,
@@ -140,6 +145,11 @@ var cellTypeTests = []struct {
 	{
 		Name:     "Unknown type",
 		Cell:     rawCell{Type: "potato", Value: &inlineStr},
+		Expected: TypeString,
+	},
+	{
+		Name:     "Unknown type with style",
+		Cell:     rawCell{Type: "potato", Value: &inlineStr, Style: 1},
 		Expected: TypeString,
 	},
 	{
