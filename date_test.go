@@ -18,6 +18,7 @@ var excelDateTests = []struct {
 	{"43489.5", "2019-01-24T12:00:00Z"},
 	{"43489.99999", "2019-01-24T23:59:59Z"},
 	{"-100.25", "1899-09-20T18:00:00Z"},
+	{"", ""},
 }
 
 func TestConvertingValidExcelDates(t *testing.T) {

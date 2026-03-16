@@ -22,6 +22,10 @@ var excelEpoch = time.Date(1899, 12, 30, 0, 0, 0, 0, time.UTC)
 // The portion after the decimal point represents the proportion through the day.
 // For example, 6am would be 1/4 of the way through a 24hr day, so it is stored as 0.25.
 func convertExcelDateToDateString(value string) (string, error) {
+	if value == "" {
+		return "", nil
+	}
+
 	floatValue, err := strconv.ParseFloat(value, 64)
 	if err != nil {
 		return "", fmt.Errorf("unable to parse date float value: %w", err)
